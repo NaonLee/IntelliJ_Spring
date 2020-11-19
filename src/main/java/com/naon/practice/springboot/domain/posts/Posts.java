@@ -1,8 +1,11 @@
 package com.naon.practice.springboot.domain.posts;
 
+import com.naon.practice.springboot.domain.BaseTimeEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 import javax.persistence.*;
 
@@ -10,7 +13,8 @@ import javax.persistence.*;
 @NoArgsConstructor          //기본 생성자 자동 추가
 @Entity                     //테이블 링크 클래스 알림
 
-public class Posts {
+
+public class Posts extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)     //enable auto-increment (게시글 번호)
@@ -29,5 +33,10 @@ public class Posts {
         this.title = title;
         this.content = content;
         this.author = author;
+    }
+
+    public void update(String title, String content){
+        this.title = title;
+        this.content = content;
     }
 }
