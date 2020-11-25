@@ -41,4 +41,11 @@ public class PostsService {
     public List<PostsListResponseDto> findAllDesc(){
         return postsRepository.findAllDesc().stream().map(PostsListResponseDto::new).collect(Collectors.toList());
     }
+
+    @Transactional
+    public void delete (Long id){
+        Posts posts = postsRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("There is no such post. id="+id));
+
+        postsRepository.delete(posts);
+    }
 }
