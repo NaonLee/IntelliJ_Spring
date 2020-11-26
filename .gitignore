@@ -3,3 +3,5 @@
 
 .gradle
 .idea
+#security id, secret
+application-oauth.properties
